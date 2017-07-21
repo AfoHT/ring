@@ -50,6 +50,7 @@ const X86: &'static str = "x86";
 const X86_64: &'static str = "x86_64";
 const AARCH64: &'static str = "aarch64";
 const ARM: &'static str = "arm";
+const MIPS: &'static str = "mips";
 const NEVER: &'static str = "Don't ever build this file.";
 
 #[cfg_attr(rustfmt, rustfmt_skip)]
@@ -121,6 +122,13 @@ const RING_SRCS: &'static [(&'static [&'static str], &'static str)] = &[
     (&[AARCH64], "crypto/fipsmodule/ec/asm/ecp_nistz256-armv8.pl"),
     (&[AARCH64], "crypto/poly1305/asm/poly1305-armv8.pl"),
     (&[AARCH64], SHA512_ARMV8),
+
+    (&[MIPS], "crypto/poly1305/asm/poly1305-mips.pl"),
+    (&[MIPS], "crypto/bn/asm/mips-mont.pl"),
+    (&[MIPS], "crypto/bn/asm/mips.pl"),
+    (&[MIPS], "crypto/aes/asm/aes-mips.pl"),
+    (&[MIPS], "crypto/sha/asm/sha512-mips.pl"),
+    (&[MIPS], "crypto/sha/asm/sha1-mips.pl"),
 ];
 
 const SHA256_X86_64: &'static str = "crypto/fipsmodule/sha/asm/sha256-x86_64.pl";
@@ -149,6 +157,7 @@ const RING_INCLUDES: &'static [&'static str] =
       "crypto/fipsmodule/modes/internal.h",
       "include/GFp/aes.h",
       "include/GFp/arm_arch.h",
+      "include/GFp/mips_arch.h",
       "include/GFp/base.h",
       "include/GFp/cpu.h",
       "include/GFp/mem.h",
@@ -258,6 +267,7 @@ const ASM_TARGETS:
     ("x86", None, "elf"),
     ("arm", Some("ios"), "ios32"),
     ("arm", None, "linux32"),
+    ("mips", None, "linux32"),
 ];
 
 const WINDOWS: &'static str = "windows";
